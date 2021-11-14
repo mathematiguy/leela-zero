@@ -1,6 +1,10 @@
-FROM leela-zero:base
+FROM nvidia/cuda:11.1-cudnn8-devel-ubuntu18.04
 
-# GPU build
-RUN CXX=g++ CC=gcc cmake ..
+# Install
+RUN apt-get -qq update
+RUN apt-get install -y cmake g++
+RUN apt-get install -y libboost-all-dev libopenblas-dev opencl-headers ocl-icd-libopencl1 ocl-icd-opencl-dev zlib1g-dev
+RUN apt-get install -y qt5-default qt5-qmake
 
-CMD cmake --build . --target leelaz --config Release -- -j2
+# Test for OpenCL support & compatibility
+RUN apt install -y clinfo && clinfo

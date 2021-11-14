@@ -12,3 +12,4 @@ leelaz_opencl_tuning
 /build-validation-*
 .vs/
 build/
+Dockerfiles/.*.done
